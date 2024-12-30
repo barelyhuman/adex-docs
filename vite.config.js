@@ -4,6 +4,7 @@ import { defineConfig } from "vite";
 import mdx from "@mdx-js/rollup";
 import reHighlight from "rehype-highlight";
 import reSlugs from "rehype-slug";
+import {remarkMdxToc} from "remark-mdx-toc";
 
 const baseURL = process.env.BASE_URL ?? "";
 // https://vite.dev/config/
@@ -26,6 +27,7 @@ export default defineConfig({
     mdx({
       jsxImportSource: "preact",
       rehypePlugins: [reSlugs, reHighlight],
+      remarkPlugins: [remarkMdxToc],
     }),
   ],
 });

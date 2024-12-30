@@ -4,7 +4,7 @@ import { Link } from "../components/link";
 export default function BaseLayout({ children, sideBarItems = [] }) {
   return (
     <div>
-      <div class="min-h-[80vh] mx-auto max-w-4xl p-2">
+      <div class="min-h-[80vh] mx-auto max-w-5xl p-2">
         <header class="flex flex-col justify-center h-[400px]">
           <h1 class="flex gap-2 items-center text-2xl font-semibold">
             <span>
@@ -44,8 +44,8 @@ export default function BaseLayout({ children, sideBarItems = [] }) {
             </small>
           </p>
         </header>
-        <main class="flex flex-col gap-12 sm:flex-row">
-          <aside id="sidebar" class="flex-1 text-sm">
+        <main class="flex flex-col gap-4 sm:flex-row">
+          <aside id="sidebar" class="mx-2 text-sm w-[20%]">
             <Sidebar
               items={Object.values(sideBarItems).sort(
                 (x, y) => x.order - y.order
@@ -53,7 +53,7 @@ export default function BaseLayout({ children, sideBarItems = [] }) {
               initialValue={Object.keys(sideBarItems)[0]}
             />
           </aside>
-          <article class="w-full mb-10 md:w-[75%] prose prose-invert text-zinc-300">
+          <article class="w-full mb-10 md:w-[80%] prose prose-invert text-zinc-300">
             {children}
           </article>
         </main>
