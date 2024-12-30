@@ -70,3 +70,38 @@ export default async function handler(req, res) {
   });
 }
 ```
+
+### Islands
+
+This is an additional feature of _adex_ that significantly changes how the views are rendered.
+Instead of rendering fully interactive pages, you now render static pages with interactive bits.
+
+This replicates a similar feature set to [Deno's fresh](https://fresh.deno.dev/) except you don't need to define a separate folder for `islands`, you just write them as components and adex
+will take care of identifying them.
+
+You can read more about the concept on [preactjs.com/blog/simplifying-islands-arch](https://preactjs.com/blog/simplifying-islands-arch).
+
+To enable this you pass the `islands` option as `true` in the adex plugin
+
+```js
+// vite.config.js
+import { defineConfig } from "adex";
+
+export default defineConfig({
+  //...remaining config
+  plugins: [
+    //...remaining plugins
+    adex({
+      islands: true,
+    }),
+  ],
+});
+```
+
+**Caveats**
+
+You existing pages that were interactive will become static and will not bind any events or state handlers. You sub
+components that are interactive will stay interactive
+
+
+For other options checkout the [configuration reference](/configuration)
