@@ -2,8 +2,8 @@ import preact from "@preact/preset-vite";
 import { readFile } from "fs/promises";
 import { defineConfig } from "vite";
 import mdx from "@mdx-js/rollup";
-import remarkToc from "remark-toc";
-import remarkGfm from "remark-gfm";
+import reHighlight from "rehype-highlight";
+import reSlugs from "rehype-slug";
 
 const baseURL = process.env.BASE_URL ?? "";
 // https://vite.dev/config/
@@ -25,7 +25,7 @@ export default defineConfig({
     preactPages(),
     mdx({
       jsxImportSource: "preact",
-      remarkPlugins: [remarkGfm, remarkToc],
+      rehypePlugins: [reSlugs, reHighlight],
     }),
   ],
 });
