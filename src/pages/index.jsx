@@ -9,9 +9,9 @@ const AllContent = () => {
     const Component = sideBar[d].source;
     const classList = i > 0 ? "mt-12 pt-12" : "";
     components.push(
-      <div class={classList}>
+      <article class={classList}>
         <Component />
-      </div>
+      </article>
     );
   }
 
