@@ -9,6 +9,10 @@ import {
 } from "preact-iso";
 import { routes } from "~routes";
 import "./index.css";
+import { sideBar } from "./content/data";
+
+let baseURL = import.meta.env.BASE_URL;
+baseURL = baseURL.endsWith("/") ? baseURL : baseURL + "/";
 
 const PageRoutes = () => {
   return <Router>{mapPagesToRoutes(routes)}</Router>;
@@ -26,11 +30,13 @@ const Main = () => {
 
 export const prerender = async (data) => {
   const { html, links: discoveredLinks } = await ssr(<Main />);
+  const fromSidebar = Object.keys(sideBar).map((d) =>
+    (baseURL + sideBar[d].key).replace(/^\.\//, "/")
+  );
+
   return {
     html,
-    links: new Set([
-      ...discoveredLinks,
-    ]),
+    links: new Set([...discoveredLinks, ...fromSidebar]),
     data: { url: data.url },
     head: {
       lang: "en",
