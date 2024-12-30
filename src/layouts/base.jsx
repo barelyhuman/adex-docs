@@ -1,4 +1,5 @@
 import { Sidebar } from "../components/Sidebar";
+import { Link } from "../components/link";
 
 export default function BaseLayout({ children, sideBarItems = [] }) {
   return (
@@ -33,9 +34,9 @@ export default function BaseLayout({ children, sideBarItems = [] }) {
                 />
               </svg>
             </span>
-            <a href="/" class="hover:underline hover:underline-offset-4">
+            <Link href="/" class="hover:underline hover:underline-offset-4">
               Adex
-            </a>
+            </Link>
           </h1>
           <p>
             <small>
@@ -61,9 +62,10 @@ export default function BaseLayout({ children, sideBarItems = [] }) {
         <p class="text-xs">
           <small>
             Powered by{" "}
-            <a 
-            className="underline underline-offset-4"
-            href="https://preachjs.github.io/docs-template/preachjs/docs-template">
+            <a
+              className="underline underline-offset-4"
+              href="https://preachjs.github.io/docs-template/preachjs/docs-template"
+            >
               preachjs/docs-template
             </a>{" "}
           </small>
