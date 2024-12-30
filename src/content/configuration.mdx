@@ -1,0 +1,48 @@
+# Configuration Reference
+
+```ts
+type Options = {
+  fonts?: FontOptions;
+  islands?: boolean;
+};
+
+type FontOptions = {
+  providers: string[];
+  families: FontFamilies[];
+};
+
+type FontFamilies = {
+  name: string;
+  weights: string[];
+  styles: Array<"normal" | "italic" | "oblique">; // ResolveFontFacesOptions['styles']
+};
+```
+
+#### Example Usage
+
+```js
+import { defineConfig } from "vite";
+import { providers } from "adex/fonts";
+
+export default defineConfig({
+  plugins: [
+    adex({
+      // turn on `islands` components parsing on / off (default: false)
+      islands: false,
+
+      // Auto import fonts into the final bundled css so you just have
+      // to use them instead of figuring out the links
+      fonts: {
+        providers: [providers.google()],
+        families: [
+          {
+            name: "Inter",
+            weights: ["400", "600"],
+            styles: ["normal"],
+          },
+        ],
+      },
+    }),
+  ],
+});
+```

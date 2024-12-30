@@ -23,4 +23,10 @@ export const sideBar = {
     source: contentMap["./concepts.mdx"],
     key: "concepts",
   },
+  configuration:{
+    order: 99,
+    label: "Configuration Reference",
+    source: contentMap["./configuration.mdx"],
+    key: "configuration",
+  }
 };
