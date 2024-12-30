@@ -19,14 +19,13 @@ function SidebarItem({ item, active }) {
     <li class="w-fit">
       <a
         href={"/" + item.key}
-        class={`group text-zinc-400 hover:text-zinc-600 ${
-          active ? "text-zinc-600"   : ""
-        }`}
+        class={`group text-zinc-400 hover:text-zinc-400 ${
+          active ? "text-zinc-200"   : ""}`}
       >
         {item.label}
         <span
-          class={`block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-black ${
-            active ? "max-w-full !bg-zinc-600" : ""
+          class={`block max-w-0 group-hover:max-w-full transition-all duration-500 h-0.5 bg-white ${
+            active ? "max-w-full !bg-zinc-400" : ""
           }`}
         ></span>
       </a>

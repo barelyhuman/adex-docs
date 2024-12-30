@@ -8,7 +8,11 @@ const AllContent = () => {
     i++;
     const Component = sideBar[d].source;
     const classList = i > 0 ? "mt-12 pt-12" : "";
-    components.push(<Component class={classList} />);
+    components.push(
+      <div class={classList}>
+        <Component />
+      </div>
+    );
   }
 
   return components;

@@ -2,6 +2,8 @@ import preact from "@preact/preset-vite";
 import { readFile } from "fs/promises";
 import { defineConfig } from "vite";
 import mdx from "@mdx-js/rollup";
+import remarkToc from "remark-toc";
+import remarkGfm from "remark-gfm";
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -16,6 +18,7 @@ export default defineConfig({
     preactPages(),
     mdx({
       jsxImportSource: "preact",
+      remarkPlugins: [remarkGfm, remarkToc],
     }),
   ],
 });

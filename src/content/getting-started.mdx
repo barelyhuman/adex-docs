@@ -1,0 +1,64 @@
+# Getting Started
+
+## Installation
+
+As there are a few steps needed to get it running, it's not recommended to do this manually, instead use the e[xisting template to get started](https://github.com/barelyhuman/adex-default-template)
+
+If you still wish to set it up manually.
+
+- Create a preact based vite app
+
+```sh
+npm create vite@latest -- -t preact
+```
+
+- Add in the required deps
+
+```sh
+npm add -D adex
+```
+
+- Modify config to use adex
+
+```diff
+// vite.config.js
+import { defineConfig } from 'vite'
+import preact from '@preact/preset-vite'
++ import { adex } from 'adex'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
++   adex(),
+    preact()],
+})
+```
+
+- Remove the default preact files and add in basic structure for adex
+
+```sh
+rm -rf ./src/\* index.html
+mkdir -p src/pages src/api
+touch src/global.css
+```
+
+## Folder Structure
+
+After the setup, you should see this basic folder structure.
+
+```sh
+public # -> Public assets
+src  # -> source files
+--- pages
+------ hello.js # -> Route binding for `/hello`
+--- api
+------ hello.js # -> Route binding for `/api/hello`
+--- global.css # -> Global styles
+vite.config.js # -> Vite config
+```
+
+Only _`pages`_ and _`api`_ in the `src` folder hold special functionality, everything else will be processed 
+like another javascript/typescript file.
+
+To understand more about it head over to [Concepts &darr;](/concepts)
+

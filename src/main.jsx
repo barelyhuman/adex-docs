@@ -32,7 +32,7 @@ export const prerender = async (data) => {
     data: { url: data.url },
     head: {
       lang: "en",
-      title: "Docs with preact",
+      title: "Adex Documentation",
       elements: new Set([]),
     },
   };

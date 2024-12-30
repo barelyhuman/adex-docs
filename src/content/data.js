@@ -5,22 +5,22 @@ for (let i in posts) {
 }
 
 export const sideBar = {
-  "quick-start": {
+  introduction: {
     order: 0,
-    label: "Quick Start",
-    source: contentMap["./quick-start.mdx"],
-    key: "quick-start",
+    label: "Introduction",
+    source: contentMap["./introduction.mdx"],
+    key: "introduction",
   },
-  about: {
+  "getting-started": {
     order: 1,
-    label: "About",
-    source: contentMap["./about.mdx"],
-    key: "about",
+    label: "Getting Started",
+    source: contentMap["./getting-started.mdx"],
+    key: "getting-started",
   },
-  credits: {
-    order: 2,
-    label: "Credits",
-    source: contentMap["./credits.mdx"],
-    key: "credits",
+  "concepts": {
+    order: 1,
+    label: "Concepts",
+    source: contentMap["./concepts.mdx"],
+    key: "concepts",
   },
 };
