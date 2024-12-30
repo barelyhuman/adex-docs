@@ -16,7 +16,7 @@ const PageRoutes = () => {
 
 const Main = () => {
   return (
-    <LocationProvider>
+    <LocationProvider scope={import.meta.env.BASE_URL}>
       <ErrorBoundary>
         <PageRoutes />
       </ErrorBoundary>
@@ -43,10 +43,14 @@ if (typeof window !== "undefined") {
 }
 
 function mapPagesToRoutes(routes) {
+  let baseURL = import.meta.env.BASE_URL;
+  baseURL = baseURL.endsWith("/") ? baseURL : baseURL + "/";
+
   const routeComponents = [];
   for (const route of routes) {
+    const url = (baseURL + route.routePath).replace(/\/{2,}/, "/");
     routeComponents.push(
-      <Route path={route.routePath} component={lazy(() => route.module())} />
+      <Route path={url} component={lazy(() => route.module())} />
     );
   }
   return routeComponents;

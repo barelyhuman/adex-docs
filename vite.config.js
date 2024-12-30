@@ -5,9 +5,10 @@ import mdx from "@mdx-js/rollup";
 import remarkToc from "remark-toc";
 import remarkGfm from "remark-gfm";
 
+const baseURL = process.env.BASE_URL ?? "";
 // https://vite.dev/config/
 export default defineConfig({
-  base: process.env.BASE_URL ?? "/",
+  base: baseURL,
   plugins: [
     preact({
       prerender: {
@@ -15,6 +16,12 @@ export default defineConfig({
         renderTarget: "#app",
       },
     }),
+    {
+      name: "",
+      transformIndexHtml(html) {
+        return html.replace("{{BASE_URL}}", baseURL);
+      },
+    },
     preactPages(),
     mdx({
       jsxImportSource: "preact",
