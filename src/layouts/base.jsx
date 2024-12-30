@@ -34,7 +34,7 @@ export default function BaseLayout({ children, sideBarItems = [] }) {
                 />
               </svg>
             </span>
-            <Link href="/" class="hover:underline hover:underline-offset-4">
+            <Link href="/" class="mr-1 hover:underline hover:underline-offset-4">
               Adex
             </Link>
           </h1>

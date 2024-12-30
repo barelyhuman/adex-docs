@@ -12,7 +12,7 @@ export default function ContentPage() {
         <section class="w-full">
           <Content />
         </section>
-        <nav class="sticky top-[50px]">
+        <nav class="sticky top-[50px] hidden md:block">
           <h6 class="font-semibold">On this page</h6>
           <TableOfContents items={Content.toc} />
         </nav>
