@@ -1,10 +1,10 @@
-import { useRoute } from "preact-iso";
+import { useParams } from "wouter-preact";
 import { sideBar } from "../content/data";
 import BaseLayout from "../layouts/base";
 
 export default function ContentPage() {
-  const route = useRoute();
-  const Content = sideBar[route.params.content]?.source || (() => <></>);
+  const params = useParams();
+  const Content = sideBar[params.content]?.source || (() => <></>);
   return (
     <BaseLayout sideBarItems={sideBar}>
       <Content />

@@ -1,42 +1,39 @@
-import {
-  ErrorBoundary,
-  LocationProvider,
-  Route,
-  Router,
-  hydrate,
-  lazy,
-  prerender as ssr,
-} from "preact-iso";
+import { hydrate, prerender as ssr } from "preact-iso";
+import { Route, Router } from "wouter-preact";
 import { routes } from "~routes";
 import "./index.css";
 import { sideBar } from "./content/data";
 
-let baseURL = import.meta.env.BASE_URL;
-baseURL = baseURL.endsWith("/") ? baseURL : baseURL + "/";
-
-const PageRoutes = () => {
-  return <Router>{mapPagesToRoutes(routes)}</Router>;
+const PageRoutes = ({ ssrPath }) => {
+  const baseUrl = import.meta.env.BASE_URL.replace(/(^\.\/)/, "").replace(
+    /\/$/,
+    ""
+  );
+  if (ssrPath) {
+    return (
+      <Router ssrPath={baseUrl + ssrPath} base={baseUrl}>
+        {mapPagesToRoutes(routes)}
+      </Router>
+    );
+  }
+  return <Router base={baseUrl}>{mapPagesToRoutes(routes)}</Router>;
 };
 
-const Main = () => {
-  return (
-    <LocationProvider scope={import.meta.env.BASE_URL}>
-      <ErrorBoundary>
-        <PageRoutes />
-      </ErrorBoundary>
-    </LocationProvider>
-  );
+const Main = ({ url }) => {
+  return <PageRoutes ssrPath={url} />;
 };
 
 export const prerender = async (data) => {
-  const { html, links: discoveredLinks } = await ssr(<Main />);
-  const fromSidebar = Object.keys(sideBar).map((d) =>
-    (baseURL + sideBar[d].key).replace(/^\.\//, "/")
-  );
+  const { html, links: discoveredLinks } = await ssr(<Main url={data.url} />);
+
+  const toDiscover = new Set();
+  for (let key in sideBar) {
+    toDiscover.add(sideBar[key].key);
+  }
 
   return {
     html,
-    links: new Set([...discoveredLinks, ...fromSidebar]),
+    links: new Set([...discoveredLinks, ...toDiscover]),
     data: { url: data.url },
     head: {
       lang: "en",
@@ -51,17 +48,13 @@ if (typeof window !== "undefined") {
 }
 
 function mapPagesToRoutes(routes) {
-  let baseURL = import.meta.env.BASE_URL ?? "/";
-  baseURL = baseURL.endsWith("/") ? baseURL : baseURL + "/";
-
   const routeComponents = [];
   for (const route of routes) {
-    const url = (baseURL + route.routePath)
-      .replace(/\/{2,}/, "/")
-      .replace(/^\.\//, "/");
+    const componentMod =
+      "default" in route.module ? route.module.default : route.module;
 
     routeComponents.push(
-      <Route path={url} component={lazy(() => route.module())} />
+      <Route path={route.routePath} component={componentMod} />
     );
   }
   return routeComponents;

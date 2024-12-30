@@ -1,10 +1,9 @@
-import { useLocation } from "preact-iso";
-import { Link } from "./link";
+import { useLocation, Link } from "wouter-preact";
 
 export function Sidebar({ items = [] } = {}) {
-  const location = useLocation();
+  const [location] = useLocation();
 
-  const activeKey = items.find((d) => "/" + d.key === location.path);
+  const activeKey = items.find((d) => "/" + d.key === location);
 
   return (
     <ul class="sticky top-[50px] flex flex-col gap-4">
@@ -20,8 +19,8 @@ function SidebarItem({ item, active }) {
     <li class="w-fit">
       <Link
         href={"/" + item.key}
-        class={`group text-zinc-400 hover:text-zinc-400 ${
-          active ? "text-zinc-200"   : ""}`}
+        class={`group text-zinc-400 hover:text-zinc-100 ${
+          active ? "text-zinc-100" : ""}`}
       >
         {item.label}
         <span

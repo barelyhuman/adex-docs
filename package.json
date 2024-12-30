@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "preact": "^10.25.3",
-    "preact-iso": "^2.8.1"
+    "preact-iso": "^2.8.1",
+    "wouter": "^3.3.5",
+    "wouter-preact": "^3.3.5"
   },
   "devDependencies": {
     "@mdx-js/mdx": "^3.1.0",

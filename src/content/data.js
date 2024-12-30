@@ -1,5 +1,6 @@
 const contentMap = {};
 const posts = import.meta.glob("./**/*.mdx", { eager: true });
+
 for (let i in posts) {
   contentMap[i] = "default" in posts[i] ? posts[i].default : posts[i];
 }
@@ -17,16 +18,16 @@ export const sideBar = {
     source: contentMap["./getting-started.mdx"],
     key: "getting-started",
   },
-  "concepts": {
+  concepts: {
     order: 1,
     label: "Concepts",
     source: contentMap["./concepts.mdx"],
     key: "concepts",
   },
-  configuration:{
+  configuration: {
     order: 99,
     label: "Configuration Reference",
     source: contentMap["./configuration.mdx"],
     key: "configuration",
-  }
+  },
 };
