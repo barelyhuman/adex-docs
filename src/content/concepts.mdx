@@ -8,8 +8,65 @@ Route bindings can be created simply by creating a file in the `src/pages` or `s
 
 #### Pages
 
-TBD
+Pages or files inside `src/pages` are components that define a view. A view is what the user sees and so this is where you write the user facing elements for adex.
+Each route is bound to a similar path in the `pages` folder.
+
+Eg: `src/pages/hello.js` would be accessed as `/hello` in the browser.
+
+**Rules**
+
+- The page needs a _default_ export which defines the view
+- Server sided code should not be executed in pages, they are stricty views.
 
 #### API Routes
 
-TBD
+The other side of the application is to handle server side data which can be sent from the API routes.
+These route bindings are created by adding files to the `src/api` directory.
+
+Eg: `src/api/hello.js` would be bound to `/api/hello`
+
+API route files need to export simple node:http handlers.
+
+```js
+export default function handler(req, res) {
+  return res.write("hello world");
+}
+```
+
+##### API Helpers
+
+Since a lot of what we write get's redundant while working with web apps, a few helpers are added to the request and response references
+
+**Response Helpers**
+
+- `text` - for plain text responses
+- `json` - for serialized json responses
+- `html` - for html strings
+
+**Request Helpers**
+
+- `parseBodyJSON` - to parse the request body as JSON
+
+**Examples**
+
+```js
+// JSON Response
+export default function handler(req, res) {
+  return res.json({
+    ping: "pong",
+  });
+}
+```
+
+```js
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    res.statusCode = 404;
+    return res.end();
+  }
+  const payload = await req.parseBodyJSON();
+  return res.json({
+    ...payload,
+  });
+}
+```
