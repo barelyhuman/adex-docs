@@ -16,7 +16,7 @@ Eg: `src/pages/hello.js` would be accessed as `/hello` in the browser.
 **Rules**
 
 - The page needs a _default_ export which defines the view
-- Server sided code should not be executed in pages, they are stricty views.
+- Server sided code should not be executed in pages, they are strictly client sided views.
 
 #### API Routes
 
@@ -100,7 +100,7 @@ export default defineConfig({
 
 **Caveats**
 
-You existing pages that were interactive will become static and will not bind any events or state handlers. You sub
+Existing pages that were interactive will become static and will not bind any events or state handlers. The sub
 components that are interactive will stay interactive
 
 
