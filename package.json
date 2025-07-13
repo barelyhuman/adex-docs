@@ -21,6 +21,7 @@
     "@mdx-js/rollup": "^3.1.0",
     "@preact/preset-vite": "^2.10.2",
     "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.1.11",
     "autoprefixer": "^10.4.21",
     "rehype-highlight": "^7.0.2",
     "rehype-slug": "^6.0.0",

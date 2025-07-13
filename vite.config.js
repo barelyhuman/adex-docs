@@ -4,13 +4,15 @@ import { defineConfig } from "vite";
 import mdx from "@mdx-js/rollup";
 import reHighlight from "rehype-highlight";
 import reSlugs from "rehype-slug";
-import {remarkMdxToc} from "remark-mdx-toc";
+import { remarkMdxToc } from "remark-mdx-toc";
+import tailwindcss from "@tailwindcss/vite";
 
 const baseURL = process.env.BASE_URL ?? "";
 // https://vite.dev/config/
 export default defineConfig({
   base: baseURL,
   plugins: [
+    tailwindcss(),
     preact({
       prerender: {
         enabled: true,
