@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "adex": "^0.0.19",
     "preact": "^10.25.3",
     "preact-iso": "^2.8.1",
     "wouter": "^3.3.5",
